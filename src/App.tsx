@@ -10,7 +10,6 @@ import "./App.css";
 function App() {
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
-    console.log("dispatchhhhhh");
     dispatch(getUsersListAsync());
   }, []);
   return (

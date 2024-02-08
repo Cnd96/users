@@ -1,14 +1,6 @@
 type HttpMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
-type ApiFetchAsync = <T>(
-  url: string,
-  method: HttpMethod,
-  body?: object
-) => Promise<T>;
-type ApiExecutor = {
-  fetch: ApiFetchAsync;
-};
 
-const useApi = (): ApiExecutor => {
+const useApi = () => {
   const fetcher = async <T>(
     url: string,
     method: HttpMethod,

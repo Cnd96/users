@@ -1,6 +1,6 @@
 .button-styles {
-  background-color: #416dff;
-  border: 1px solid #2344b4;
+  background-color: var(--primary-blue);
+  border: 1px solid var(--dark-blue);
   border-radius: 4px;
   height: 30px;
   color: white;
@@ -9,5 +9,5 @@
 }
 
 .button-styles:hover {
-  background-color: #2344b4; /* New background color on hover */
+  background-color: var(--dark-blue); /* New background color on hover */
 }

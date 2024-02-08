@@ -1,3 +1,8 @@
+:root {
+  --primary-blue: #416dff;
+  --dark-blue: #2344b4;
+}
+
 @media only screen and (max-width: 767px) {
   p {
     font-size: 13px;

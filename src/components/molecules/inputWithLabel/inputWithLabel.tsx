@@ -1,6 +1,6 @@
 import React from "react";
-import "./inputWithLabel.styles.css";
 import Input from "../../../components/atoms/input";
+import "./inputWithLabel.styles.css";
 
 type InputWithLabelProps = {
   title: string;

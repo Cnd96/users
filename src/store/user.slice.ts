@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import UseApi from "../helpers/api";
-import { User, UsersListDataResponse } from "../types/users";
+import { User, UsersListDataResponse } from "@/types/users";
 
 const initialState: {
   usersList: User[];
@@ -11,7 +11,14 @@ const initialState: {
 const usersListSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    updateUser(state, action) {
+      const { id, updatedUser } = action.payload;
+      state.usersList = state.usersList.map((user) =>
+        user.login.uuid === id ? { ...user, ...updatedUser } : user
+      );
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(
       getUsersListAsync.fulfilled,
@@ -25,14 +32,14 @@ const usersListSlice = createSlice({
 export const getUsersListAsync = createAsyncThunk(
   "user/getUsersListAsync",
   async () => {
-    console.log("getting data apii ");
+    // Only fetching 20 users and only neccesary fileds
     const response = await UseApi().fetch<UsersListDataResponse>(
-      `?results=10&inc=name,gender,phone,email,picture,location,login`,
+      `?results=20&inc=name,gender,phone,email,picture,location,login`,
       "GET"
     );
     return response;
   }
 );
 
-export const {} = usersListSlice.actions;
+export const { updateUser } = usersListSlice.actions;
 export default usersListSlice.reducer;

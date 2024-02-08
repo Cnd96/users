@@ -1,5 +1,5 @@
 .dropDown-Field {
-  border: 1px solid #416dff;
+  border: 1px solid var(--primary-blue);
   border-radius: 4px;
   height: 35px;
   width: 70px;

@@ -1,24 +1,19 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import UserEditDetailsCard from "../../components/molecules/userEditDetailsCard/userEditDetailsCard";
+import { useParams } from "react-router-dom";
 import { RootState } from "@/store";
+import UserEditDetailsCard from "../../components/molecules/userEditDetailsCard/userEditDetailsCard";
+import "./edit.styles.css";
 
 const Edit = () => {
-  const navigate = useNavigate();
   let { id } = useParams();
   const user = useSelector((state: RootState) =>
     state.users.usersList.find((user) => user.login.uuid === id)
   );
-  console.log(user);
   return (
-    <>
-      <div
-        style={{ display: "flex", justifyContent: "center", margin: "30px 0" }}
-      >
-        <UserEditDetailsCard user={user} />
-      </div>
-    </>
+    <div className="edit-wrapper">
+      <UserEditDetailsCard user={user} />
+    </div>
   );
 };
 

@@ -1,4 +1,7 @@
+export const NAME = "name";
+export const EMAIL = "email";
+
 export const userSortOption = [
-  { value: "name", title: "Name" },
-  { value: "email", title: "email" },
+  { value: NAME, title: "Name" },
+  { value: EMAIL, title: "email" },
 ];

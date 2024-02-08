@@ -17,3 +17,10 @@
   border-radius: 50%;
   border: 3px solid black;
 }
+
+@media only screen and (max-width: 424px) {
+  .user-edit-card-details-wrapper {
+    width: 90%;
+    margin: 10px 0;
+  }
+}
