@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "./store";
 import { getUsersListAsync } from "./store/user.slice";
-import Home from "./pages/home/home";
+import Home from "./pages/home";
 import Edit from "./pages/edit";
 import "./App.css";
 
