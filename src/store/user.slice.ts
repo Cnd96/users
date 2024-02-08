@@ -11,11 +11,7 @@ const initialState: {
 const usersListSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {
-    setUsersList(state, action) {
-      state.usersList = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(
       getUsersListAsync.fulfilled,
@@ -29,13 +25,14 @@ const usersListSlice = createSlice({
 export const getUsersListAsync = createAsyncThunk(
   "user/getUsersListAsync",
   async () => {
+    console.log("getting data apii ");
     const response = await UseApi().fetch<UsersListDataResponse>(
-      `?results=10&inc=name,gender,phone,email,picture,location,id`,
+      `?results=10&inc=name,gender,phone,email,picture,location,login`,
       "GET"
     );
     return response;
   }
 );
 
-export const { setUsersList } = usersListSlice.actions;
+export const {} = usersListSlice.actions;
 export default usersListSlice.reducer;
