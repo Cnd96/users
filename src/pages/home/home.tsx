@@ -14,7 +14,9 @@ const Home = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
-  const handleSearchFieldChange = (event) => {
+  const handleSearchFieldChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setSearchTerm(event.target.value);
   };
 

@@ -12,7 +12,7 @@ const Edit = () => {
   );
   return (
     <div className="edit-wrapper">
-      <UserEditDetailsCard user={user} />
+      {user && <UserEditDetailsCard user={user} />}
     </div>
   );
 };
