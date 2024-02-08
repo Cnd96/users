@@ -11,7 +11,7 @@ function App() {
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     dispatch(getUsersListAsync());
-  }, []);
+  }, [dispatch]);
   return (
     <>
       <Router>
