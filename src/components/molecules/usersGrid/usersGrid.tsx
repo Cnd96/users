@@ -3,11 +3,11 @@ import { User } from "@/types/users";
 import UserCard from "../usersCard/usersCard";
 import "./usersGrid.styles.css";
 
-type usersGridProps = {
+type UsersGridProps = {
   users: User[];
 };
 
-export default function UsersGrid({ users }: usersGridProps) {
+export default function UsersGrid({ users }: UsersGridProps) {
   return (
     <div className="users-grid">
       {users.map((user) => (

@@ -3,8 +3,10 @@ import UseApi from "../helpers/api";
 import { User, UsersListDataResponse } from "@/types/users";
 
 const initialState: {
+  isLoaded: boolean;
   usersList: User[];
 } = {
+  isLoaded: false,
   usersList: [],
 };
 
@@ -24,6 +26,7 @@ const usersListSlice = createSlice({
       getUsersListAsync.fulfilled,
       (state, action: PayloadAction<UsersListDataResponse>) => {
         state.usersList = action.payload.results;
+        state.isLoaded = true;
       }
     );
   },

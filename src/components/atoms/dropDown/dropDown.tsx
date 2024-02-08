@@ -13,12 +13,10 @@ const DropDown = forwardRef(
   ) => {
     return (
       <select className="dropDown-Field" {...props} ref={ref}>
-        {placeholder ? (
+        {placeholder && (
           <option value="" disabled>
             {placeholder}
           </option>
-        ) : (
-          ""
         )}
         {options.map((option) => (
           <option key={option.value} value={option.value}>

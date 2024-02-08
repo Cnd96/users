@@ -1,5 +1,6 @@
-.input-Field{
+.input-Field {
   border: 1px solid var(--primary-blue);
-  border-radius:4px ;
+  border-radius: 4px;
   height: 30px;
+  padding-left: 5px;
 }

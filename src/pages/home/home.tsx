@@ -1,10 +1,10 @@
 import React, { useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
-import { EMAIL, NAME, userSortOption } from "../../helpers/dropDownOptions";
+import { COUNTRY, NAME, userSortOption } from "../../helpers/dropDownOptions";
 import useDebounce from "../../helpers/useDebounce";
 import Input from "../../components/atoms/input";
-import DropDown from "../../components/atoms/dropDown/dropDown";
+import DropDown from "../../components/atoms/dropDown";
 import UsersGrid from "../../components/molecules/usersGrid";
 import "./home.styles.css";
 
@@ -19,7 +19,7 @@ const Home = () => {
   };
 
   // Here users list might be big if we requested large no of users. So filtering a big users array can be expensive.
-  // Therefore memoizing the filtered users array and only filtering when debouncedSearchTerm or users changes.
+  // Therefore memoizing the filtered users array and only filtering when debouncedSearchTerm or users list changes.
   // And using debouncedSearchTerm (delay 500ms) to filter users to improve performance and avoid unnecessary re-renders
   const filteredUsers = useMemo(() => {
     const searchValue = debouncedSearchTerm.toLowerCase();
@@ -33,17 +33,19 @@ const Home = () => {
 
   // sorting only if filteredUsers changed or sort option changed
   const sortedUsers = useMemo(() => {
-    let sortedUsers = [...filteredUsers];
-    if (sortBy === EMAIL) {
-      sortedUsers.sort((a, b) => a.email.localeCompare(b.email));
+    let tempUsers = [...filteredUsers];
+    if (sortBy === COUNTRY) {
+      tempUsers.sort((a, b) =>
+        a.location.country.localeCompare(b.location.country)
+      );
     } else if (sortBy === NAME) {
-      sortedUsers.sort((a, b) => {
+      tempUsers.sort((a, b) => {
         const fullNameA = `${a.name.first} ${a.name.last}`;
         const fullNameB = `${b.name.first} ${b.name.last}`;
         return fullNameA.localeCompare(fullNameB);
       });
     }
-    return sortedUsers;
+    return tempUsers;
   }, [filteredUsers, sortBy]);
 
   return (
@@ -61,7 +63,11 @@ const Home = () => {
           placeholder="Sort by"
         />
       </div>
-      <UsersGrid users={sortedUsers} />
+      {users.isLoaded ? (
+        <UsersGrid users={sortedUsers} />
+      ) : (
+        <h2>....Loading</h2>
+      )}
     </div>
   );
 };

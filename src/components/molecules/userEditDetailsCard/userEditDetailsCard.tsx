@@ -7,18 +7,24 @@ import InputWithLabel from "../inputWithLabel";
 import Button from "../../../components/atoms/button";
 import "./userEditDetailsCard.styles.css";
 
-type userCardProps = {
+type UserEditCardProps = {
   user: User;
 };
 
-export default function UserEditDetailsCard({ user }: userCardProps) {
+const FIRST = "first";
+const LAST = "last";
+const EMAIL = "email";
+const PHONE = "phone";
+
+export default function UserEditDetailsCard({ user }: UserEditCardProps) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [userData, setUserData] = useState({ ...user });
+
   const onChangeUserData = (field: string, value: string) => {
-    if (field === "first" || field === "last") {
+    if (field === FIRST || field === LAST) {
       setUserData({ ...userData, name: { ...userData.name, [field]: value } });
-    } else if (field === "phone" || field === "email") {
+    } else if (field === PHONE || field === EMAIL) {
       setUserData({ ...userData, [field]: value });
     }
   };
@@ -27,6 +33,7 @@ export default function UserEditDetailsCard({ user }: userCardProps) {
     dispatch(updateUser({ id: userData.login.uuid, updatedUser: userData }));
     navigate("/");
   };
+
   return (
     <div className="user-edit-card-wrapper">
       <img
@@ -38,22 +45,22 @@ export default function UserEditDetailsCard({ user }: userCardProps) {
         <InputWithLabel
           title={"First Name"}
           value={userData.name.first}
-          onChangeValue={(e) => onChangeUserData("first", e.target.value)}
+          onChangeValue={(e) => onChangeUserData(FIRST, e.target.value)}
         />
         <InputWithLabel
           title={"Last Name"}
           value={userData.name.last}
-          onChangeValue={(e) => onChangeUserData("last", e.target.value)}
+          onChangeValue={(e) => onChangeUserData(LAST, e.target.value)}
         />
         <InputWithLabel
           title={"Email"}
           value={userData.email}
-          onChangeValue={(e) => onChangeUserData("email", e.target.value)}
+          onChangeValue={(e) => onChangeUserData(EMAIL, e.target.value)}
         />
         <InputWithLabel
           title={"Phone"}
           value={userData.phone}
-          onChangeValue={(e) => onChangeUserData("phone", e.target.value)}
+          onChangeValue={(e) => onChangeUserData(PHONE, e.target.value)}
         />
         <Button text="Save" onClick={onSaveClick} style={{ float: "right" }} />
       </div>

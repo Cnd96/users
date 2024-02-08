@@ -4,11 +4,11 @@ import { User } from "@/types/users";
 import Edit from "../../../assets/Edit.svg";
 import "./usersCard.styles.css";
 
-type userCardProps = {
+type UserCardProps = {
   user: User;
 };
 
-export default function UserCard({ user }: userCardProps) {
+const UserCard = ({ user }: UserCardProps) => {
   const navigate = useNavigate();
   return (
     <div className="user-card-wrapper">
@@ -34,4 +34,6 @@ export default function UserCard({ user }: userCardProps) {
       </div>
     </div>
   );
-}
+};
+
+export default React.memo(UserCard);
