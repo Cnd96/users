@@ -1,6 +1,6 @@
 How to setup
 
-Clone frontend repository from - https://github.com/Cnd96/users.git
+Clone repository from - https://github.com/Cnd96/users.git
 
 Navigate to project directory - cd users
 
